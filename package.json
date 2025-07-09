@@ -12,7 +12,7 @@
   },
   "main": "server.js",
   "scripts": {
-    "build": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend",
+    "build": "npm install --prefix backend && npm install --prefix frontend/expense-tracker && npm run build --prefix frontend/expense-tracker",
     "start": "node backend/server.js"
   }
 }
