@@ -21,7 +21,6 @@ const SideMenu = () => {
     }
     navigate(route);
   };
-
   const handleLogout = () => {
     localStorage.clear();
     clearUser();
