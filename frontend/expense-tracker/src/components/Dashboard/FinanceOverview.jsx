@@ -14,7 +14,7 @@ const FinanceOverview = ({ totalBalance, totalIncome, totalExpense }) => {
       <div className="flex item-center justify-between">
         <h1 className="">Financial Overview</h1>
       </div>
-      <CutomPieChart
+      <CustomPieChart
         data={balancedData}
         label="Total Balance"
         totalAmount={`$${totalBalance}`}
