@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import CustomPieChart from "../Charts/CustomPieChart";
 
 import { prepareExpenseBarChartData } from "../../utils/helper";
+import CustomPieChart from "../Charts/CustomPieChart";
 
 const COLORS = ["#875CF5", "#FA2C37", "#FF6900", "#4f39f6"];
 
