@@ -17,12 +17,7 @@ const CustomLineChart = ({ data }) => {
         <XAxis dataKey="name" />
         <YAxis />
         <Tooltip />
-        <Line
-          type="monotone"
-          dataKey="amount"
-          stroke="#10b981"
-          strokeWidth={2}
-        />
+        <Line type="monotone" dataKey="amount" stroke="#10b981" strokeWidth={2} />
       </LineChart>
     </ResponsiveContainer>
   );
