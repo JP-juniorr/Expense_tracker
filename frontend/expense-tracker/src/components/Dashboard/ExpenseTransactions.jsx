@@ -1,5 +1,5 @@
 import React from "react";
-import { LuAArrowDown } from "react-icons/lu";
+import { LuArrowDown } from "react-icons/lu"; // ✅ valid
 import TransactionInfoCard from "../Cards/TransactionInfoCard";
 import moment from "moment";
 const ExpenseTransactions = ({ transactions, onSeeMore }) => {
@@ -8,7 +8,7 @@ const ExpenseTransactions = ({ transactions, onSeeMore }) => {
       <div className="flex items-center justify-between">
         <h5 className="text-lg">Expenses</h5>
         <button className="card-btn" onClick={onSeeMore}>
-          See All <LuAArrowDown className="text-base" />
+          See All <LuArrowDown className="text-base" />
         </button>
       </div>
 

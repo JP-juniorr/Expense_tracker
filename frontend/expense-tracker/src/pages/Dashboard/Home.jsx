@@ -6,20 +6,21 @@ import axiosInstance from "../../utils/axiosInstnce";
 import { API_PATHS } from "../../utils/apiPaths";
 import InfoCard from "../../components/Cards/InfoCard";
 
-import { LuHandCoins, LuWalletMinimal } from "react-icons/lu";
+import { LuWallet, LuCoins } from "react-icons/lu";
 import { IoMdCard } from "react-icons/io";
 import { addThousandsSeparator } from "../../utils/helper";
+
 import RecentTransactions from "../../components/Dashboard/RecentTransactions";
 import FinanceOverview from "../../components/Dashboard/FinanceOverview";
 import ExpenseTransactions from "../../components/Dashboard/ExpenseTransactions";
 import Last30DaysExpenses from "../../components/Dashboard/Last30DaysExpenses";
 import RecentIncomeWithChart from "../../components/Dashboard/RecentIncomeWithChart";
 import RecentIncome from "../../components/Dashboard/RecentIncome";
+
 const Home = () => {
   useUserAuth();
   const navigate = useNavigate();
   const [dashboardData, setDashboardData] = useState(null);
-
   const [loading, setLoading] = useState(false);
 
   const fetchDashboardData = async () => {
@@ -41,7 +42,6 @@ const Home = () => {
 
   useEffect(() => {
     fetchDashboardData();
-    return () => {};
   }, []);
 
   return (
@@ -49,7 +49,6 @@ const Home = () => {
       <div className="my-5 mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           <div className="p-6">
-            {" "}
             <InfoCard
               icon={<IoMdCard />}
               label="Total Balance"
@@ -58,9 +57,8 @@ const Home = () => {
             />
           </div>
           <div className="p-6">
-            {" "}
             <InfoCard
-              icon={<LuWalletMinimal />}
+              icon={<LuWallet />}
               label="Total Income"
               value={addThousandsSeparator(dashboardData?.totalIncome || 0)}
               color="bg-orange-500"
@@ -68,16 +66,17 @@ const Home = () => {
           </div>
           <div className="p-6">
             <InfoCard
-              icon={<LuHandCoins />}
+              icon={<LuCoins />}
               label="Total Expense"
               value={addThousandsSeparator(dashboardData?.totalExpenses || 0)}
               color="bg-red-500"
             />
           </div>
         </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
           <RecentTransactions
-            transactions={dashboardData?.recentTransactions} // ✅ correct
+            transactions={dashboardData?.recentTransactions}
             onSeeMore={() => navigate("/expense")}
           />
           <FinanceOverview
@@ -98,7 +97,6 @@ const Home = () => {
             }
             totalIncome={dashboardData?.totalIncome || 0}
           />
-
           <RecentIncome
             transactions={dashboardData?.last60DaysIncome?.transactions || []}
             onSeeMore={() => navigate("/income")}

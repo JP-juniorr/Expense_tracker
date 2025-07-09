@@ -1,6 +1,7 @@
 import React from "react";
 import card2 from "../../assets/images/card2.png";
-import { LuTrendingUpDown } from "react-icons/lu";
+import { LuTrendingUp } from "react-icons/lu"; // Use a valid icon here
+
 const AuthLayout = ({ children }) => {
   return (
     <div className="flex">
@@ -14,7 +15,7 @@ const AuthLayout = ({ children }) => {
         <div className="w-48 h-48 rounded-[40px] bg-violet-500 absolute -bottom-7 -left-5"></div>
         <div className="grid grid-cols-1 z-20">
           <StatsInfoCard
-            icon={<LuTrendingUpDown />}
+            icon={<LuTrendingUp />}
             label="Track Your Income & Expenses"
             value="430 000"
             color="bg-primary"
