@@ -10,8 +10,8 @@ const dashboardRoutes = require("./routes/dashboardRoutes");
 
 const app = express();
 
+// Middleware
 app.use(express.json());
-
 app.use(
   cors({
     origin: process.env.CLIENT_URL || "*",
@@ -20,22 +20,24 @@ app.use(
   })
 );
 
+// API routes
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/income", incomeRoutes);
 app.use("/api/v1/expense", expenseRoutes);
 app.use("/api/v1/dashboard", dashboardRoutes);
 
+// Serve uploads
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-// Serve frontend static files and SPA routing only in production
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+// ✅ Always serve frontend (regardless of NODE_ENV)
+const frontendPath = path.join(__dirname, "../frontend/expense-tracker/dist");
+app.use(express.static(frontendPath));
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
-  });
-}
+app.get("*", (req, res) => {
+  res.sendFile(path.join(frontendPath, "index.html"));
+});
 
+// Connect DB and start server
 const PORT = process.env.PORT || 5000;
 
 connectDB()
