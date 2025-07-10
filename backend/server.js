@@ -14,9 +14,13 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "*",
+    origin: [
+      "http://localhost:5173", // local dev
+      "https://expense-tracker-v7dj.onrender.com", // deployed frontend
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true, // optional: for cookies / auth headers
   })
 );
 
