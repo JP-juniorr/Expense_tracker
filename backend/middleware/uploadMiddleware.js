@@ -1,12 +1,20 @@
+const fs = require("fs");
+const path = "uploads/";
+
+if (!fs.existsSync(path)) {
+  fs.mkdirSync(path, { recursive: true }); // Create the uploads directory if it doesn't exist
+}
+
 const multer = require("multer");
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads/");
+    cb(null, path); // Use the existing path variable
   },
   filename: (req, file, cb) => {
     cb(null, `${Date.now()}-${file.originalname}`);
   },
 });
+
 const fileFilter = (req, file, cb) => {
   const allowedTypes = ["image/jpeg", "image/png", "image/jpg", "image/gif"];
   if (allowedTypes.includes(file.mimetype)) {
@@ -18,6 +26,7 @@ const fileFilter = (req, file, cb) => {
     );
   }
 };
+
 const upload = multer({
   storage,
   fileFilter,

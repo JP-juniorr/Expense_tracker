@@ -32,8 +32,8 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 const frontendPath = path.join(__dirname, "../frontend/expense-tracker/dist");
 app.use(express.static(frontendPath));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(frontendPath, "index.html"));
+app.get("/*", (req, res) => {
+  res.sendFile(path.resolve(frontendPath, "index.html"));
 });
 
 // Start server
