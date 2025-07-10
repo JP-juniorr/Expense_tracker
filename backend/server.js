@@ -12,7 +12,6 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-
 app.use(
   cors({
     origin: process.env.CLIENT_URL || "*",
@@ -21,23 +20,26 @@ app.use(
   })
 );
 
-// API Routes
+// API routes
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/income", incomeRoutes);
 app.use("/api/v1/expense", expenseRoutes);
 app.use("/api/v1/dashboard", dashboardRoutes);
+
+// Serve uploads
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-// ✅ Serve Vite frontend correctly (always, no NODE_ENV check)
+// ✅ Always serve frontend (regardless of NODE_ENV)
 const frontendPath = path.join(__dirname, "../frontend/expense-tracker/dist");
 app.use(express.static(frontendPath));
 
-app.get("/*", (req, res) => {
-  res.sendFile(path.resolve(frontendPath, "index.html"));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(frontendPath, "index.html"));
 });
 
-// Start server
+// Connect DB and start server
 const PORT = process.env.PORT || 5000;
+
 connectDB()
   .then(() => {
     app.listen(PORT, () => {
